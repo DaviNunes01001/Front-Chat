@@ -53,7 +53,7 @@ A aplicação abrirá em: `http://localhost:3000`
 
 1. Inicie o servidor Python em um computador.
 
-2. Descubra o IP local da máquina:
+2. Descubra o IP local da máquina, abra o terminal:
 
 - Linux:
 ```bash
