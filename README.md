@@ -1,84 +1,89 @@
-## 💬 LAN Chat - Alternativa ao Discord (Rede Local)
+# LAN Chat — Alternativa ao Discord (Rede Local)
 
-Uma aplicação de chat em tempo real para rede local (LAN), construída com:
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![WebSocket](https://img.shields.io/badge/WebSocket-010101?logo=socketdotio&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
 
-- ⚛ React (Frontend)
+---
 
-- 🐍 FastAPI + WebSockets (Backend)
+## Sobre o projeto
 
-- 🌐 Comunicação em rede local
+Aplicação de chat em tempo real para rede local (LAN), construída com **React** no front-end e **FastAPI + WebSockets** no back-end.
 
-## 🚀 Funcionalidades
+---
 
-- Mensagens em tempo real (WebSocket)
+## Funcionalidades
 
+- Mensagens em tempo real via WebSocket
 - Conexão via IP do servidor
-
 - Indicador de servidor Online / Offline
-
-- Histórico de mensagens (em memória)
-
+- Histórico de mensagens em memória
 - Funciona entre dispositivos na mesma rede
-
 - Interface personalizada com CSS
 
-- Simples e leve
+---
 
-## 🔧 Configuração do Backend (Servidor Python)
+## Como funciona
 
-1. Instalar dependências
-```bash
-pip install fastapi "uvicorn[standard]" websockets
+```
+React (cliente)
+     │
+     │  WebSocket
+     ▼
+FastAPI (servidor)
+     │
+     ├── broadcast para todos os clientes conectados
+     └── envia histórico completo ao novo usuário
 ```
 
-2. Rodar o servidor
+O histórico de mensagens é armazenado em memória — ao reiniciar o servidor, o histórico é perdido.
+
+---
+
+## Configuração
+
+### Back-end (Python)
+
 ```bash
+# Instalar dependências
+pip install fastapi "uvicorn[standard]" websockets
+
+# Rodar o servidor
 python server.py
 ```
 
-O servidor irá rodar em: `http://0.0.0.0:8000`
+Servidor disponível em `http://0.0.0.0:8000`
 
+### Front-end (React)
 
-## 💻 Configuração do Frontend (React)
-
-Dentro da pasta do frontend:
 ```bash
 npm install
 npm run dev
 ```
 
-A aplicação abrirá em: `http://localhost:3000`
+Aplicação disponível em `http://localhost:3000`
 
-## 🌐 Como Usar Entre Computadores
+---
 
-1. Inicie o servidor Python em um computador.
+## Uso em rede local
 
-2. Descubra o IP local da máquina, abra o terminal:
+1. Inicie o servidor Python em um computador
+2. Descubra o IP local da máquina:
 
-- Linux:
 ```bash
+# Linux
 ip a | grep inet
-```
 
-- Windows:
-```bash
+# Windows
 ipconfig
 ```
 
-Exemplo de IP: `192.168.1.23`
+Exemplo: `192.168.1.23`
 
-3. Nos outros dispositivos da mesma rede, abra o app React.
-4. Digite o IP do servidor.
-5. Conecte e comece a conversar.
+3. Nos outros dispositivos da mesma rede, abra o app React
+4. Digite o IP do servidor e conecte
 
-> ⚠ Todos os dispositivos devem estar na mesma rede Wi-Fi ou LAN.
-
-## 🧠 Como Funciona
-
-- React conecta ao servidor usando WebSocket.
-
-- servidor transmite (broadcast) as mensagens para todos os clientes conectados.
-
-- histórico de mensagens é armazenado em memória.
-
-- Quando um novo usuário entra, ele recebe todo o histórico atual.
+> ⚠️ Todos os dispositivos devem estar na mesma rede Wi-Fi ou LAN.
